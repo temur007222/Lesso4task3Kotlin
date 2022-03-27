@@ -14,14 +14,17 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    fun onClick(view: View?) {
+    fun onClick(v: View?) {
         val nameText = findViewById<EditText>(R.id.name)
         val ageText = findViewById<EditText>(R.id.age)
+
         val name = nameText.text.toString()
         val age = ageText.text.toString().toInt()
+
         val user = User(name, age)
         val intent = Intent(this, DetailActivity::class.java)
-        intent.putExtra(User::class.java.simpleName, user)
+        intent.putExtra("name", user)
         startActivity(intent)
+
     }
 }

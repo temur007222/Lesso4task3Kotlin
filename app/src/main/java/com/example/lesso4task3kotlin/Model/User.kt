@@ -2,10 +2,9 @@ package com.example.lesso4task3kotlin.Model
 
 import android.os.Parcel
 import android.os.Parcelable
-import android.os.Parcelable.Creator
 
-class User(var name: String?, var age: Int) : Parcelable {
 
+data class User(var name: String?, var age: Int) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readInt()
@@ -13,17 +12,17 @@ class User(var name: String?, var age: Int) : Parcelable {
     }
 
     override fun describeContents(): Int {
-        return 0
+       return 0
     }
 
-    override fun writeToParcel(dest: Parcel, flags: Int) {
-        dest.writeString(name)
-        dest.writeInt(age)
+    override fun writeToParcel(p0: Parcel?, p1: Int) {
+       p0?.writeString(name!!)
+       p0?.writeInt(age!!)
     }
 
     @JvmName("getName1")
     fun getName(): String? {
-        return name
+         return name
     }
 
     @JvmName("getAge1")
@@ -31,29 +30,15 @@ class User(var name: String?, var age: Int) : Parcelable {
          return age
     }
 
-    companion object {
-        val CREATOR: Creator<User?> = object : Creator<User?> {
-            override fun createFromParcel(source: Parcel): User? {
-                val name = source.readString()
-                val age = source.readInt()
-                return User(name, age)
-            }
-
-            override fun newArray(size: Int): Array<User?> {
-                return arrayOfNulls(size)
-            }
-        }
-    }
-
-     object CREATOR : Creator<User> {
+    companion object CREATOR : Parcelable.Creator<User> {
         override fun createFromParcel(parcel: Parcel): User {
-            val name: String? = parcel.readString()
-            val age: Int = parcel.readInt()
-            return User(name, age)
+            return User(parcel)
         }
 
         override fun newArray(size: Int): Array<User?> {
             return arrayOfNulls(size)
         }
     }
+
+
 }
