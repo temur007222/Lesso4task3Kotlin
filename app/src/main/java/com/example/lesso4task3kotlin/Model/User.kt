@@ -2,15 +2,14 @@ package com.example.lesso4task3kotlin.Model
 
 import android.os.Parcel
 import android.os.Parcelable
+import android.text.Editable
 
 
 data class User(var name: String?, var age: Int) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readInt()
-    ) {
-    }
-
+    )
     override fun describeContents(): Int {
        return 0
     }
@@ -39,6 +38,6 @@ data class User(var name: String?, var age: Int) : Parcelable {
             return arrayOfNulls(size)
         }
     }
-
-
 }
+
+

@@ -22,9 +22,11 @@ class MainActivity : AppCompatActivity() {
         val age = ageText.text.toString().toInt()
 
         val user = User(name, age)
+
         val intent = Intent(this, DetailActivity::class.java)
-        intent.putExtra("name", user)
+        intent.putExtra(User::class.java.simpleName, user)
         startActivity(intent)
 
     }
 }
+
